@@ -34,6 +34,8 @@
     position: absolute;
     bottom: 20px;
     right: 20px;
+    display: flex;
+    align-items: center;
   }
 
   .language-selector select {
@@ -46,6 +48,13 @@
     appearance: none; /* Remove default arrow in some browsers */
     -webkit-appearance: none; /* Remove default arrow for WebKit browsers */
     -moz-appearance: none; /* Remove default arrow for Firefox */
+    margin-right: 5px;
+  }
+
+  .language-flag {
+    width: 24px;
+    height: auto;
+    margin-right: 5px;
   }
 
   .language-selector select:focus {
@@ -59,7 +68,7 @@
 <button onclick="checkIn()">Check-in</button>
 
 <div class="language-selector">
-  Language: 
+  <img class="language-flag" src="https://www.countryflags.io/gb/flat/24.png" alt="English">
   <select onchange="changeLanguage(this.value)">
     <option value="en">English</option>
     <option value="es">Spanish</option>
