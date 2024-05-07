@@ -6,6 +6,7 @@
 <title>Check-in Button</title>
 <style>
   body {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,17 +28,41 @@
   button:hover {
     background-color: #0056b3;
   }
+
+  .language-selector {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 14px;
+    color: #888;
+  }
 </style>
 </head>
 <body>
 
 <button onclick="checkIn()">Check-in</button>
 
+<div class="language-selector">
+  Language: 
+  <select onchange="changeLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="es">Spanish</option>
+    <option value="fr">French</option>
+    <!-- Add more languages as needed -->
+  </select>
+</div>
+
 <script>
 function checkIn() {
   // Add your check-in functionality here
   alert("You have checked in!");
   // You can replace the alert with whatever functionality you need
+}
+
+function changeLanguage(languageCode) {
+  // Add code to change language based on the selected option
+  alert("Language changed to " + languageCode);
+  // You can replace the alert with your language change logic
 }
 </script>
 
