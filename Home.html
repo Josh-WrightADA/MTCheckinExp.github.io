@@ -121,19 +121,14 @@ function checkIn() {
     alert("An error occurred. Please try again later.");
   });
 }
-</script>
-
 
 function changeLanguage(languageCode) {
-  // Change language of the page
   document.documentElement.lang = languageCode;
 
-  // Change language icon
   var flagIcon = document.querySelector('.flag-icon');
   flagIcon.classList.remove('flag-icon-gb', 'flag-icon-es', 'flag-icon-fr');
   flagIcon.classList.add('flag-icon-' + languageCode);
 
-  // Change text on the check-in button
   var checkInButton = document.querySelector('button');
   if (languageCode === 'es') {
     checkInButton.textContent = 'Registrar';
@@ -143,7 +138,15 @@ function changeLanguage(languageCode) {
     checkInButton.textContent = 'Check-in';
   }
 
-  // Change placeholder text for the reason dropdown
+  var nameEmailInput = document.querySelector('input[type="text"]');
+  if (languageCode === 'es') {
+    nameEmailInput.setAttribute('placeholder', 'Nombre/Correo electrónico');
+  } else if (languageCode === 'fr') {
+    nameEmailInput.setAttribute('placeholder', 'Nom/Adresse e-mail');
+  } else {
+    nameEmailInput.setAttribute('placeholder', 'Name/Email Address');
+  }
+
   var reasonDropdown = document.querySelector('select');
   if (languageCode === 'es') {
     reasonDropdown.querySelector('option[value=""]').textContent = 'Selecciona un motivo';
