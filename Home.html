@@ -86,7 +86,7 @@
 </div>
 
 <div class="language-selector">
-  <img class="flag-icon" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" data-src="flag-icon-css/flags/4x3/gb.svg" alt="English">
+  <span class="flag-icon flag-icon-gb"></span>
   <select onchange="changeLanguage(this.value)">
     <option value="en">English</option>
     <option value="es">Spanish</option>
@@ -97,15 +97,70 @@
 
 <script>
 function checkIn() {
-  // Add your check-in functionality here
-  alert("You have checked in!");
-  // You can replace the alert with whatever functionality you need
+  var nameEmail = document.querySelector('input[type="text"]').value;
+  var reason = document.querySelector('select').value;
+
+  var data = {
+    "name": nameEmail,
+    "reason": reason
+  };
+
+  fetch('https://script.google.com/a/macros/ada.ac.uk/s/AKfycbwjRdIGREgxYQGvXqm4uA2zbtr_I8Xj5Of_sGvuY6OxdACh6yOFQVojNqu5UzV77wZA8g/exec', {
+    method: 'POST',
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("Check-in successful!");
+    } else {
+      alert("Check-in failed. Please try again later.");
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert("An error occurred. Please try again later.");
+  });
 }
+</script>
+
 
 function changeLanguage(languageCode) {
-  // Add code to change language based on the selected option
-  alert("Language changed to " + languageCode);
-  // You can replace the alert with your language change logic
+  // Change language of the page
+  document.documentElement.lang = languageCode;
+
+  // Change language icon
+  var flagIcon = document.querySelector('.flag-icon');
+  flagIcon.classList.remove('flag-icon-gb', 'flag-icon-es', 'flag-icon-fr');
+  flagIcon.classList.add('flag-icon-' + languageCode);
+
+  // Change text on the check-in button
+  var checkInButton = document.querySelector('button');
+  if (languageCode === 'es') {
+    checkInButton.textContent = 'Registrar';
+  } else if (languageCode === 'fr') {
+    checkInButton.textContent = 'Enregistrer';
+  } else {
+    checkInButton.textContent = 'Check-in';
+  }
+
+  // Change placeholder text for the reason dropdown
+  var reasonDropdown = document.querySelector('select');
+  if (languageCode === 'es') {
+    reasonDropdown.querySelector('option[value=""]').textContent = 'Selecciona un motivo';
+    reasonDropdown.querySelector('option[value="meeting"]').textContent = 'Reunión';
+    reasonDropdown.querySelector('option[value="interview"]').textContent = 'Entrevista';
+    reasonDropdown.querySelector('option[value="appointment"]').textContent = 'Cita';
+  } else if (languageCode === 'fr') {
+    reasonDropdown.querySelector('option[value=""]').textContent = 'Sélectionnez un motif';
+    reasonDropdown.querySelector('option[value="meeting"]').textContent = 'Réunion';
+    reasonDropdown.querySelector('option[value="interview"]').textContent = 'Entretien';
+    reasonDropdown.querySelector('option[value="appointment"]').textContent = 'Rendez-vous';
+  } else {
+    reasonDropdown.querySelector('option[value=""]').textContent = 'Select a reason';
+    reasonDropdown.querySelector('option[value="meeting"]').textContent = 'Meeting';
+    reasonDropdown.querySelector('option[value="interview"]').textContent = 'Interview';
+    reasonDropdown.querySelector('option[value="appointment"]').textContent = 'Appointment';
+  }
 }
 </script>
 
