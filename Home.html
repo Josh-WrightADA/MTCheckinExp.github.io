@@ -12,6 +12,7 @@
     align-items: center;
     height: 100vh;
     margin: 0;
+    font-family: Arial, sans-serif;
   }
 
   button {
@@ -31,10 +32,25 @@
 
   .language-selector {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .language-selector select {
+    padding: 8px;
     font-size: 14px;
-    color: #888;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    color: #555;
+    appearance: none; /* Remove default arrow in some browsers */
+    -webkit-appearance: none; /* Remove default arrow for WebKit browsers */
+    -moz-appearance: none; /* Remove default arrow for Firefox */
+  }
+
+  .language-selector select:focus {
+    outline: none;
+    border-color: #007bff;
   }
 </style>
 </head>
