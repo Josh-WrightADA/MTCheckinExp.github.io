@@ -99,13 +99,13 @@
 function checkIn() {
   var nameEmail = document.querySelector('input[type="text"]').value;
   var reason = document.querySelector('select').value;
-
+  
   var data = {
     "name": nameEmail,
     "reason": reason
   };
 
-  fetch('https://script.google.com/a/macros/ada.ac.uk/s/AKfycbwjRdIGREgxYQGvXqm4uA2zbtr_I8Xj5Of_sGvuY6OxdACh6yOFQVojNqu5UzV77wZA8g/exec', {
+  fetch("https://script.google.com/a/macros/ada.ac.uk/s/AKfycbwjRdIGREgxYQGvXqm4uA2zbtr_I8Xj5Of_sGvuY6OxdACh6yOFQVojNqu5UzV77wZA8g/exec", {
     method: 'POST',
     body: JSON.stringify(data)
   })
